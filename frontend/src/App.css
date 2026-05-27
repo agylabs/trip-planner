@@ -55,12 +55,62 @@
   letter-spacing: 0.5px;
 }
 
-/* Status Indicator */
+/* Header Right & Theme Toggle & Status Indicator */
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.theme-toggle {
+  background: var(--bg-status);
+  border: 1px solid var(--border-glass);
+  color: var(--text-secondary);
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: var(--transition-smooth);
+  position: relative;
+  overflow: hidden;
+  box-shadow: var(--shadow-premium);
+  flex-shrink: 0;
+}
+
+.theme-toggle:hover {
+  color: var(--text-primary);
+  background: var(--bg-glass-hover);
+  border-color: var(--border-glass-focus);
+  transform: scale(1.05) rotate(12deg);
+}
+
+.theme-toggle:active {
+  transform: scale(0.95);
+}
+
+.theme-toggle-icon {
+  width: 20px;
+  height: 20px;
+  transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.theme-toggle-icon.sun {
+  animation: rotate-sun 12s linear infinite;
+}
+
+@keyframes rotate-sun {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
 .status-section {
   display: flex;
   align-items: center;
   gap: 10px;
-  background: rgba(0, 0, 0, 0.2);
+  background: var(--bg-status);
   padding: 6px 14px;
   border-radius: 20px;
   border: 1px solid var(--border-glass);
@@ -152,10 +202,10 @@
 }
 
 .user .message-bubble {
-  background: linear-gradient(135deg, var(--accent-primary) 0%, hsl(245, 80%, 55%) 100%);
-  color: var(--text-primary);
+  background: var(--bg-message-user);
+  color: #ffffff; /* Explicit high contrast white for user text in both modes */
   border-bottom-right-radius: 4px;
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.15);
 }
 
 .agent .message-bubble {
@@ -193,7 +243,7 @@
 /* Collapsible Trajectory Accordion */
 .trajectory-accordion {
   margin-top: 12px;
-  background: rgba(0, 0, 0, 0.25);
+  background: var(--bg-accordion);
   border: 1px solid var(--border-glass);
   border-radius: 12px;
   overflow: hidden;
@@ -205,7 +255,7 @@
   justify-content: space-between;
   align-items: center;
   padding: 10px 16px;
-  background: rgba(255, 255, 255, 0.02);
+  background: var(--bg-accordion-header);
   cursor: pointer;
   user-select: none;
   font-size: 13px;
@@ -215,7 +265,7 @@
 }
 
 .trajectory-header:hover {
-  background: rgba(255, 255, 255, 0.05);
+  background: var(--bg-accordion-header-hover);
   color: var(--text-primary);
 }
 
@@ -241,7 +291,7 @@
   gap: 8px;
   max-height: 250px;
   overflow-y: auto;
-  background: rgba(0, 0, 0, 0.15);
+  background: var(--bg-accordion-content);
   border-top: 1px solid var(--border-glass);
 }
 
