@@ -534,3 +534,99 @@
     transform: translateY(0);
   }
 }
+
+/* Header Controls & Theme Toggle */
+.header-controls {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.theme-toggle-btn {
+  background: var(--bg-glass);
+  border: 1px solid var(--border-glass);
+  color: var(--text-primary);
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: var(--transition-smooth);
+  font-size: 16px;
+  box-shadow: var(--shadow-premium);
+  padding: 0;
+  user-select: none;
+}
+
+.theme-toggle-btn:hover {
+  background: var(--bg-glass-hover);
+  transform: rotate(15deg) scale(1.05);
+  border-color: var(--border-glass-focus);
+}
+
+.theme-toggle-btn:active {
+  transform: scale(0.95);
+}
+
+/* Code block premium styling */
+.markdown-body pre {
+  background: rgba(0, 0, 0, 0.25);
+  border: 1px solid var(--border-glass);
+  border-radius: 10px;
+  padding: 12px 16px;
+  overflow-x: auto;
+  margin: 12px 0;
+}
+
+.markdown-body code {
+  font-family: Menlo, Monaco, Consolas, 'Courier New', monospace;
+  font-size: 13.5px;
+  color: var(--accent-secondary);
+}
+
+/* Light Theme Overrides */
+:root[data-theme='light'] .status-section {
+  background: rgba(0, 0, 0, 0.04);
+}
+
+:root[data-theme='light'] .trajectory-accordion {
+  background: rgba(0, 0, 0, 0.03);
+}
+
+:root[data-theme='light'] .trajectory-header {
+  background: rgba(0, 0, 0, 0.02);
+}
+
+:root[data-theme='light'] .trajectory-header:hover {
+  background: rgba(0, 0, 0, 0.04);
+}
+
+:root[data-theme='light'] .trajectory-content {
+  background: rgba(0, 0, 0, 0.01);
+}
+
+:root[data-theme='light'] .markdown-body table {
+  background: rgba(0, 0, 0, 0.03);
+}
+
+:root[data-theme='light'] .markdown-body th {
+  background: rgba(0, 0, 0, 0.04);
+}
+
+:root[data-theme='light'] .markdown-body tr:nth-child(even) {
+  background: rgba(0, 0, 0, 0.015);
+}
+
+:root[data-theme='light'] .markdown-body pre {
+  background: rgba(0, 0, 0, 0.04);
+}
+
+:root[data-theme='light'] ::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.12);
+}
+
+:root[data-theme='light'] ::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 0, 0, 0.22);
+}

@@ -91,6 +91,14 @@ function parseMarkdown(text) {
 }
 
 export default function App() {
+  const [theme, setTheme] = useState(() => {
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme) {
+      return savedTheme;
+    }
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    return prefersDark ? 'dark' : 'light';
+  });
   const [messages, setMessages] = useState([]);
   const [input, setInput] = useState('');
   const [sessionId, setSessionId] = useState(null);
@@ -101,6 +109,16 @@ export default function App() {
 
   const chatFeedRef = useRef(null);
   const textareaRef = useRef(null);
+
+  // Sync theme selection to document element attribute and save to localStorage
+  useEffect(() => {
+    document.documentElement.setAttribute('data-theme', theme);
+    localStorage.setItem('theme', theme);
+  }, [theme]);
+
+  const toggleTheme = () => {
+    setTheme(prev => (prev === 'dark' ? 'light' : 'dark'));
+  };
 
   // Read backend API URL from env variables
   const apiUrl = import.meta.env.VITE_AGENT_API_URL || 'http://localhost:8080';
@@ -374,9 +392,21 @@ export default function App() {
           <span>Trip Planner Agent</span>
         </div>
         
-        <div className="status-section">
-          <div className={`status-dot ${statusType === 'active' ? 'active' : statusType === 'error' ? 'error' : 'idle'}`}></div>
-          <span className="status-text">{status}</span>
+        <div className="header-controls">
+          <button 
+            type="button"
+            className="theme-toggle-btn" 
+            onClick={toggleTheme}
+            title={`Switch to ${theme === 'dark' ? 'Light' : 'Dark'} Mode`}
+            aria-label={`Switch to ${theme === 'dark' ? 'Light' : 'Dark'} Mode`}
+          >
+            {theme === 'dark' ? '☀️' : '🌙'}
+          </button>
+          
+          <div className="status-section">
+            <div className={`status-dot ${statusType === 'active' ? 'active' : statusType === 'error' ? 'error' : 'idle'}`}></div>
+            <span className="status-text">{status}</span>
+          </div>
         </div>
       </header>
 
